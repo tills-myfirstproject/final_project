@@ -27,16 +27,16 @@
       <!--Input a loop that dynamically populates all icon buttons-->
       
       <div>
-      <% @categories.each do |category| %>
-        <label class="btn btn-secondary active">
-          <input type="radio" name="options" id="option1" autocomplete="off" checked> <%= category.name %> <img src="<%= category.icon %>" height="50">
-        </label>
-      
-      <% end %>
+          <% @categories.each do |category| %>
+            <label class="btn btn-secondary active">
+              <input type="radio" name="category_id" id="category1" value="<%= @activity.category_id %>" autocomplete="off" checked>
+              <%= category.name %>
+              <img src="<%= category.icon %>" height="50">
+            </label>
+          
+          <% end %>
       </div>
 
-        <input type="text" id="category_id" name="category_id" placeholder="Category" class="form-control" value="<%= @activity.category_id %>">
-      </div>
       <!-- Label and input for name -->
       <div class="form-group">
         <label for="name" class="control-label">
@@ -49,21 +49,68 @@
       <!-- Label and input for address -->
       <div class="form-group">
         <label for="address" class="control-label">
-          Address
+          What is your event's address?
         </label>
 
         <input type="text" id="address" name="address" placeholder="Address" class="form-control" value="<%= @activity.address %>">
       </div>
+      
+      <!--Calendar to pick date-->
+      <div class="form-group">
+        <label for="datepicker" class="control-label">
+          What date is the event?
+        </label>
+        
+        <form>
+          <input id="datepicker" value="<%= @activity.date %>"/>
+        </form>
 
       <!-- Label and input for meet_time -->
       <div class="form-group">
         <label for="meet_time" class="control-label">
-          Meet time
+          What time will your event start?
         </label>
-
-        <input type="text" id="meet_time" name="meet_time" placeholder="Meet time" class="form-control" value="<%= @activity.meet_time %>">
+        
+        <input id="meet_time" type="time" name="appt-time" value="<%= @activity.meet_time %>">
+        
+        <!--<input type="text" id="meet_time" name="meet_time" placeholder="Meet time" class="form-control" >-->
+      
       </div>
 
+      <!-- Label and input for duration -->
+      <div class="form-group">
+        <label for="duration" class="control-label">
+          How many hours do you expect your event to be?
+        </label>
+            <select type="list" id="duration" name="duration" value="<%= @activity.duration %>" width="50">
+            <% (1..6).each do |i| %>
+              <option value="<%= i %>"><%= i %></option>  
+            <% end %>
+        </select>
+        
+      </div>
+
+      <!-- Label and input for cost_level -->
+      <div class="form-group">
+        <label for="cost_level" class="control-label">
+          How expensive will this event be?
+        </label>
+        
+        <label class="btn btn-secondary active">
+          <input type="radio" name="cost_level" id="cost1" autocomplete="off" checked> <img src="/Dollar signs for tilley-01.jpg" height="20">
+        </label>
+        
+        <label class="btn btn-secondary active">
+          <input type="radio" name="cost_level" id="cost2" autocomplete="off" checked> <img src="/Dollar signs for tilley-02.jpg" height="20">
+        </label>
+        
+        <label class="btn btn-secondary active">
+          <input type="radio" name="cost_level" id="cost3" autocomplete="off" checked> <img src="/Dollar signs for tilley-03.jpg" height="20">
+        </label>
+
+        <!--<input type="text" id="cost_level" name="cost_level" placeholder="Cost level" class="form-control">-->
+      </div>
+      
       <!-- Label and input for proposer_id -->
       <div class="form-group">
         <label for="proposer_id" class="control-label">
@@ -76,28 +123,10 @@
       <!-- Label and input for visual -->
       <div class="form-group">
         <label for="visual" class="control-label">
-          Visual
+          Visual (Optional)
         </label>
 
         <input type="text" id="visual" name="visual" placeholder="Visual" class="form-control" value="<%= @activity.visual %>">
-      </div>
-
-      <!-- Label and input for duration -->
-      <div class="form-group">
-        <label for="duration" class="control-label">
-          Duration
-        </label>
-
-        <input type="text" id="duration" name="duration" placeholder="Duration" class="form-control" value="<%= @activity.duration %>">
-      </div>
-
-      <!-- Label and input for cost_level -->
-      <div class="form-group">
-        <label for="cost_level" class="control-label">
-          Cost level
-        </label>
-
-        <input type="text" id="cost_level" name="cost_level" placeholder="Cost level" class="form-control" value="<%= @activity.cost_level %>">
       </div>
 
       <button class="btn btn-success">
