@@ -13,6 +13,7 @@ class InvitesController < ApplicationController
 
   def new
     @invite = Invite.new
+    @activity = Activity.find(params[:activity_id])
 
     render("invites/new.html.erb")
   end

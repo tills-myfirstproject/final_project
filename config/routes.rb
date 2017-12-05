@@ -36,7 +36,7 @@ Rails.application.routes.draw do
 
   # Routes for the Invite resource:
   # CREATE
-  get "/invites/new", :controller => "invites", :action => "new"
+  get "/invites/new/:activity_id", :controller => "invites", :action => "new"
   post "/create_invite", :controller => "invites", :action => "create"
 
   # READ

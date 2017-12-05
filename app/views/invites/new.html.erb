@@ -9,7 +9,7 @@
 <% end %>
 
 <div class="page-header">
-  <h3>Add Invite</h3>
+  <h3>Invite people to <%= @activity.name %></h3>
 </div>
 
 <div class="row">
@@ -19,13 +19,7 @@
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
       <!-- Label and input for activity_id -->
-      <div class="form-group">
-        <label for="activity_id" class="control-label">
-          Activity
-        </label>
-
-        <input type="text" id="activity_id" name="activity_id" placeholder="Activity" class="form-control" value="<%= @invite.activity_id %>">
-      </div>
+        <input type="hidden" id="activity_id" name="activity_id" placeholder="Activity" class="form-control" value="<%= @invite.activity_id %>">
 
       <!-- Label and input for invitee_id -->
       <div class="form-group">

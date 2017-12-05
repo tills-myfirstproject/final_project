@@ -27,5 +27,23 @@ class Activity < ApplicationRecord
   # Indirect Associations
   has_many :invitees, :through => :invites, :source => :invitee
   
+# Validations
+  validates :name, presence: true
+  validates :name, length: { minimum: 2 }
+  
+  validates :category, presence: true  
+  
+  validates :address, presence: true
+  validates :address, length: { minimum: 2 }
+  
+  validates :date, presence: true
+  
+  validates :meet_time, presence: true
+
+  validates :duration, numericality: { only_integer: true }
+  
+  validates :cost_level, presence: true
+  
+  validates :proposer_id, presence: true
   
 end

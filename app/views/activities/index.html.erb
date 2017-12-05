@@ -17,6 +17,7 @@
         <th>Duration (hours)</th>
         <th>Visual</th>
         <th>Cost level</th>
+        <th>Invite Friends!</th>
         <th>Actions</th>
       </tr>
 
@@ -38,6 +39,9 @@
               <img src="/Dollar signs for tilley-03.jpg" height="20">
           <% end %>
           
+        </td>
+        <td>
+          <a href="invites/new/<%= activity.id %>" class="btn btn-primary">Send Invites!</a>
         </td>
         <td>
           <a href="/activities/<%= activity.id %>" class="btn btn-primary">Show</a>

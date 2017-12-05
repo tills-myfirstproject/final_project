@@ -9,7 +9,7 @@
 <% end %>
 
 <div class="page-header">
-  <h3>Edit <%= @activity.name %></h3>
+  <h3>Edit your event - <%= @activity.name %> <img src="<%= Category.find_by(:id => @activity.category_id).icon %>" height="50"></h3>
 </div>
 
 <div class="row">
@@ -48,6 +48,7 @@
         <form>
           <input id="datepicker" name="date" value="<%= @activity.date %>"/>
         </form>
+      </div>
 
       <!-- Label and input for meet_time -->
       <div class="form-group">
@@ -98,7 +99,7 @@
           <input type="radio" name="cost_level" id="cost_level" value="high" autocomplete="off"  checked> <img src="/Dollar signs for tilley-03.jpg" height="20">
         </label>
         
-        
+      </div>
         
 
       <button class="btn btn-warning">
