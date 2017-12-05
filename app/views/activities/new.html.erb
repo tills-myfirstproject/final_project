@@ -111,17 +111,13 @@
       
       <!-- Label and input for proposer_id -->
       <div class="form-group">
-        <label for="proposer_id" class="control-label">
-          Proposer
-        </label>
-
         <input type="hidden" id="proposer_id" name="proposer_id" placeholder="Proposer" class="form-control" value="<%= current_user.id %>">
       </div>
 
       <!-- Label and input for visual -->
       <div class="form-group">
         <label for="visual" class="control-label">
-          Visual (Optional)
+          Visual (input a photo link)
         </label>
 
         <input type="text" id="visual" name="visual" placeholder="Visual" class="form-control" value="<%= @activity.visual %>">
