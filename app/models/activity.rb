@@ -22,7 +22,7 @@ class Activity < ApplicationRecord
   # Direct Associations
   has_many :invites, :dependent => :destroy
   belongs_to :category
-  belongs_to :proposer, :class_name => "User"
+  #belongs_to :proposer, :class_name => "User"
   
   # Indirect Associations
   has_many :invitees, :through => :invites, :source => :invitee

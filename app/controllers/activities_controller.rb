@@ -21,10 +21,12 @@ class ActivitiesController < ApplicationController
 
   def create
     @activity = Activity.new
-
+    @categories = Category.all
+    
     @activity.name = params[:name]
     @activity.address = params[:address]
     @activity.category_id = params[:category_id]
+    @activity.date = params[:date]
     @activity.meet_time = params[:meet_time]
     @activity.proposer_id = params[:proposer_id]
     @activity.visual = params[:visual]

@@ -25,17 +25,17 @@
         </label>
         
       <!--Input a loop that dynamically populates all icon buttons-->
-      
+
       <div>
           <% @categories.each do |category| %>
             <label class="btn btn-secondary active">
-              <input type="radio" name="category_id" id="category1" value="<%= @activity.category_id %>" autocomplete="off" checked>
-              <%= category.name %>
-              <img src="<%= category.icon %>" height="50">
+              <input type="radio" name="category_id" value="<%= category.id %>" autocomplete="off" checked>
+                <%= category.name %>
+                <img src="<%= category.icon %>" height="50">
             </label>
-          
           <% end %>
       </div>
+
 
       <!-- Label and input for name -->
       <div class="form-group">
@@ -96,20 +96,18 @@
           How expensive will this event be?
         </label>
         
-        <label class="btn btn-secondary active">
-          <input type="radio" name="cost_level" id="cost1" autocomplete="off" checked> <img src="/Dollar signs for tilley-01.jpg" height="20">
-        </label>
         
-        <label class="btn btn-secondary active">
-          <input type="radio" name="cost_level" id="cost2" autocomplete="off" checked> <img src="/Dollar signs for tilley-02.jpg" height="20">
-        </label>
-        
-        <label class="btn btn-secondary active">
-          <input type="radio" name="cost_level" id="cost3" autocomplete="off" checked> <img src="/Dollar signs for tilley-03.jpg" height="20">
-        </label>
-
-        <!--<input type="text" id="cost_level" name="cost_level" placeholder="Cost level" class="form-control">-->
-      </div>
+          <label class="btn btn-secondary active">
+            <input type="radio" name="cost_level" id="cost_level" value="low" autocomplete="off"  checked> <img src="/Dollar signs for tilley-01.jpg" height="20">
+          </label>
+          
+          <label class="btn btn-secondary active">
+            <input type="radio" name="cost_level" id="cost_level" value="medium" autocomplete="off"  checked> <img src="/Dollar signs for tilley-02.jpg" height="20">
+          </label>
+          
+          <label class="btn btn-secondary active">
+            <input type="radio" name="cost_level" id="cost_level" value="high" autocomplete="off"  checked> <img src="/Dollar signs for tilley-03.jpg" height="20">
+          </label>
       
       <!-- Label and input for proposer_id -->
       <div class="form-group">
@@ -117,7 +115,7 @@
           Proposer
         </label>
 
-        <input type="text" id="proposer_id" name="proposer_id" placeholder="Proposer" class="form-control" value="<%= @activity.proposer_id %>">
+        <input type="hidden" id="proposer_id" name="proposer_id" placeholder="Proposer" class="form-control" value="<%= current_user.id %>">
       </div>
 
       <!-- Label and input for visual -->
