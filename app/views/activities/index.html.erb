@@ -28,7 +28,7 @@
         <td><%= activity.date %></td>
         <td><%= activity.meet_time.strftime("%I") %>:<%= activity.meet_time.strftime("%M") %> <%= activity.meet_time.strftime("%p") %></td>
         <td><%= activity.duration %></td>
-        <td><%= activity.visual %></td>
+        <td><img src="<%= activity.visual %>" height=""></td>
         <td>
           <% if activity.cost_level == "low" %>
               <img src="/Dollar signs for tilley-01.jpg" height="20">
