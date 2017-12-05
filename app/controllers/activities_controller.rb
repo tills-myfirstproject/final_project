@@ -45,6 +45,14 @@ class ActivitiesController < ApplicationController
 
   def edit
     @activity = Activity.find(params[:id])
+    
+    # if @activity.cost_level = "low"
+    #   @low_option = "checked"
+    # elsif @activity.cost_level = "medium"
+    #   @medium_option = "checked"
+    # elsif @activity.cost = "high"
+    #   @high_option.cost = "high"
+    # end
 
     render("activities/edit.html.erb")
   end

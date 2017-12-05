@@ -9,7 +9,7 @@
 <% end %>
 
 <div class="page-header">
-  <h3>Edit Activity #<%= @activity.id %></h3>
+  <h3>Edit <%= @activity.name %></h3>
 </div>
 
 <div class="row">
@@ -26,6 +26,9 @@
 
         <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @activity.name %>">
       </div>
+      
+      <!-- Label and input for category_id -->
+        <input type="hidden" id="category_id" name="category_id" placeholder="Category" class="form-control" value="<%= @activity.category_id %>">
 
       <!-- Label and input for address -->
       <div class="form-group">
@@ -36,31 +39,36 @@
         <input type="text" id="address" name="address" placeholder="Address" class="form-control" value="<%= @activity.address %>">
       </div>
 
-      <!-- Label and input for category_id -->
+      <!--Calendar to pick date-->
       <div class="form-group">
-        <label for="category_id" class="control-label">
-          Category
+        <label for="datepicker" class="control-label">
+          Date
         </label>
-
-        <input type="text" id="category_id" name="category_id" placeholder="Category" class="form-control" value="<%= @activity.category_id %>">
-      </div>
+        
+        <form>
+          <input id="datepicker" name="date" value="<%= @activity.date %>"/>
+        </form>
 
       <!-- Label and input for meet_time -->
       <div class="form-group">
         <label for="meet_time" class="control-label">
           Meet time
         </label>
-
-        <input type="text" id="meet_time" name="meet_time" placeholder="Meet time" class="form-control" value="<%= @activity.meet_time %>">
+        
+        <input id="meet_time" type="time" name="meet_time" required>
+      
       </div>
 
       <!-- Label and input for proposer_id -->
+        <input type="hidden" id="proposer_id" name="proposer_id" placeholder="Proposer" class="form-control" value="<%= @activity.proposer_id %>">
+
+      <!-- Label and input for duration -->
       <div class="form-group">
-        <label for="proposer_id" class="control-label">
-          Proposer
+        <label for="duration" class="control-label">
+          Duration (hours)
         </label>
 
-        <input type="text" id="proposer_id" name="proposer_id" placeholder="Proposer" class="form-control" value="<%= @activity.proposer_id %>">
+        <input type="text" id="duration" name="duration" placeholder="Duration" class="form-control" value="<%= @activity.duration %>">
       </div>
 
       <!-- Label and input for visual -->
@@ -72,23 +80,26 @@
         <input type="text" id="visual" name="visual" placeholder="Visual" class="form-control" value="<%= @activity.visual %>">
       </div>
 
-      <!-- Label and input for duration -->
-      <div class="form-group">
-        <label for="duration" class="control-label">
-          Duration
-        </label>
-
-        <input type="text" id="duration" name="duration" placeholder="Duration" class="form-control" value="<%= @activity.duration %>">
-      </div>
-
       <!-- Label and input for cost_level -->
       <div class="form-group">
         <label for="cost_level" class="control-label">
           Cost level
         </label>
-
-        <input type="text" id="cost_level" name="cost_level" placeholder="Cost level" class="form-control" value="<%= @activity.cost_level %>">
-      </div>
+        
+        <label class="btn btn-secondary active">
+          <input type="radio" name="cost_level" id="cost_level" value="low" autocomplete="off"  checked> <img src="/Dollar signs for tilley-01.jpg" height="20">
+        </label>
+        
+        <label class="btn btn-secondary active">
+          <input type="radio" name="cost_level" id="cost_level" value="medium" autocomplete="off"  checked> <img src="/Dollar signs for tilley-02.jpg" height="20">
+        </label>
+        
+        <label class="btn btn-secondary active">
+          <input type="radio" name="cost_level" id="cost_level" value="high" autocomplete="off"  checked> <img src="/Dollar signs for tilley-03.jpg" height="20">
+        </label>
+        
+        
+        
 
       <button class="btn btn-warning">
         Update Activity
