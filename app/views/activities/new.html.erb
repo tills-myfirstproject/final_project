@@ -43,7 +43,7 @@
           What should we call your event?
         </label>
 
-        <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @activity.name %>">
+        <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @activity.name %>" required>
       </div>
 
       <!-- Label and input for address -->
@@ -62,7 +62,7 @@
         </label>
         
         <form>
-          <input id="datepicker" value="<%= @activity.date %>"/>
+          <input id="datepicker" name="date" required value="<%= @activity.date %>"/>
         </form>
 
       <!-- Label and input for meet_time -->
@@ -71,9 +71,7 @@
           What time will your event start?
         </label>
         
-        <input id="meet_time" type="time" name="appt-time" value="<%= @activity.meet_time %>">
-        
-        <!--<input type="text" id="meet_time" name="meet_time" placeholder="Meet time" class="form-control" >-->
+        <input id="meet_time" type="time" name="meet_time" value="<%= @activity.meet_time %>" required>
       
       </div>
 
@@ -111,17 +109,13 @@
       
       <!-- Label and input for proposer_id -->
       <div class="form-group">
-        <label for="proposer_id" class="control-label">
-          Proposer
-        </label>
-
         <input type="hidden" id="proposer_id" name="proposer_id" placeholder="Proposer" class="form-control" value="<%= current_user.id %>">
       </div>
 
       <!-- Label and input for visual -->
       <div class="form-group">
         <label for="visual" class="control-label">
-          Visual (Optional)
+          Visual (input a photo link)
         </label>
 
         <input type="text" id="visual" name="visual" placeholder="Visual" class="form-control" value="<%= @activity.visual %>">
