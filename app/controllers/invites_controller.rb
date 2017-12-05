@@ -14,6 +14,7 @@ class InvitesController < ApplicationController
   def new
     @invite = Invite.new
     @activity = Activity.find(params[:activity_id])
+    @users = User.all_except(user.current_user)
 
     render("invites/new.html.erb")
   end

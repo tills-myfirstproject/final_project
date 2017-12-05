@@ -24,11 +24,16 @@
       <!-- Label and input for invitee_id -->
       <div class="form-group">
         <label for="invitee_id" class="control-label">
-          Invitee
+          Who would you like to invite?
         </label>
 
-        <input type="text" id="invitee_id" name="invitee_id" placeholder="Invitee" class="form-control" value="<%= @invite.invitee_id %>">
+        <select type="list" id="invitee_id" name="invitee_id" placeholder="Invitee" class="form-control" value="<%= @invite.invitee_id %>">
+            <% @users.each do |users| %>
+              <option value="<%= users.email %>"><%= users.email %></option>  
+            <% end %>
+        </select>
       </div>
+
 
       <!-- Label and input for attend_status -->
       <div class="form-group">
