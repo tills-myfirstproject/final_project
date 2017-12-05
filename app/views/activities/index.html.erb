@@ -14,22 +14,31 @@
         <th>Address</th>
         <th>Date</th>
         <th>Meet time</th>
-        <th>Visual</th>
         <th>Duration (hours)</th>
+        <th>Visual</th>
         <th>Cost level</th>
         <th>Actions</th>
       </tr>
 
       <% @activities.each do |activity| %>
       <tr>
-        <td><%= activity.category_id %></td>
+        <td><img src="<%= Category.find_by(:id => activity.category_id).icon %>" height="50"></td>
         <td><%= activity.name %></td>
         <td><%= activity.address %></td>
         <td><%= activity.date %></td>
         <td><%= activity.meet_time %></td>
-        <td><%= activity.visual %></td>
         <td><%= activity.duration %></td>
-        <td><%= activity.cost_level %></td>
+        <td><%= activity.visual %></td>
+        <td>
+          <% if activity.cost_level == "low" %>
+              <img src="/Dollar signs for tilley-01.jpg" height="20">
+          <% elsif activity.cost_level == "medium" %>
+              <img src="/Dollar signs for tilley-02.jpg" height="20">
+          <% elsif activity.cost_level == "high" %>
+              <img src="/Dollar signs for tilley-03.jpg" height="20">
+          <% end %>
+          
+        </td>
         <td>
           <a href="/activities/<%= activity.id %>" class="btn btn-primary">Show</a>
           <a href="/activities/<%= activity.id %>/edit" class="btn btn-warning">Edit</a>
