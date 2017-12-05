@@ -62,7 +62,7 @@
         </label>
         
         <form>
-          <input id="datepicker" value="<%= @activity.date %>"/>
+          <input id="datepicker" name="date" value="<%= @activity.date %>"/>
         </form>
 
       <!-- Label and input for meet_time -->
@@ -71,7 +71,7 @@
           What time will your event start?
         </label>
         
-        <input id="meet_time" type="time" name="appt-time" value="<%= @activity.meet_time %>">
+        <input id="meet_time" type="time" name="meet_time" value="<%= @activity.meet_time %>">
         
         <!--<input type="text" id="meet_time" name="meet_time" placeholder="Meet time" class="form-control" >-->
       

@@ -1,8 +1,7 @@
 class ActivitiesController < ApplicationController
   def index
-    
-    
-    @activities = Activity.all
+
+    @activities = Activity.where(:proposer_id => current_user.id).all
     @categories = Category.all
 
     render("activities/index.html.erb")
