@@ -13,6 +13,9 @@ class InvitesController < ApplicationController
   
   def invite_show
     @activity = Activity.find(params[:id])
+    @invites = Invite.where(:activity_id => @activity.id).all
+    #@non_current_user = User.where.not(id: current_user.id).all
+    @users = User.where.not(id: Invite.where(:activity_id => @activity.id).pluck(:invitee_id)).all
 
     render("invites/invite_show.html.erb")
   end
@@ -36,7 +39,7 @@ class InvitesController < ApplicationController
     save_status = @invite.save
 
     if save_status == true
-      redirect_to("/invite_again/#{@invite.activity_id}", :notice => "Invite to created successfully.")
+      redirect_to("/invite_again/#{@invite.activity_id}", :notice => "Invite created successfully.")
     else
       redirect_to("/invites/new/#{@activity.id}", :alert => "Invite failed.")
     end
