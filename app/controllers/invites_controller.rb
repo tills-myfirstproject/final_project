@@ -1,7 +1,10 @@
 class InvitesController < ApplicationController
   def index
-    @invites = Invite.all
-
+    @invites = Invite.where(:invitee_id => current_user.id).all
+    @new_invites = @invites.where(:attend_status => "No Response").all
+    @activities = Activity.all
+    @categories = Category.all
+    
     render("invites/index.html.erb")
   end
 

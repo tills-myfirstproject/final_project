@@ -17,4 +17,9 @@ class Invite < ApplicationRecord
   belongs_to :activity
   belongs_to :invitee, :class_name => "User"
   
+# Validations
+  validates :activity_id, presence: true
+  validates :invitee_id, presence: true
+  validates :attend_status, presence: true
+  
 end
