@@ -9,7 +9,7 @@
 <% end %>
 
 <div class="page-header">
-  <h3>Invite people to <%= @activity.name %></h3>
+  <h3>Invite people to <%= @activity.name %> <img src="<%= Category.find_by(:id => @activity.category_id).icon %>" height="50"></h3>
 </div>
 
 <div class="row">
@@ -19,7 +19,7 @@
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
       <!-- Label and input for activity_id -->
-        <input type="hidden" id="activity_id" name="activity_id" placeholder="Activity" class="form-control" value="<%= @invite.activity_id %>">
+        <input type="hidden" id="activity_id" name="activity_id" placeholder="Activity" class="form-control" value="<%= @activity.id %>">
 
       <!-- Label and input for invitee_id -->
       <div class="form-group">
@@ -29,23 +29,17 @@
 
         <select type="list" id="invitee_id" name="invitee_id" placeholder="Invitee" class="form-control" value="<%= @invite.invitee_id %>">
             <% @users.each do |users| %>
-              <option value="<%= users.email %>"><%= users.email %></option>  
+              <option value="<%= users.id %>"><%= users.email %></option>  
             <% end %>
         </select>
       </div>
 
 
       <!-- Label and input for attend_status -->
-      <div class="form-group">
-        <label for="attend_status" class="control-label">
-          Attend status
-        </label>
-
-        <input type="text" id="attend_status" name="attend_status" placeholder="Attend status" class="form-control" value="<%= @invite.attend_status %>">
-      </div>
+        <input type="hidden" id="attend_status" name="attend_status" placeholder="Attend status" class="form-control" value="No Response">
 
       <button class="btn btn-success">
-        Create Invite
+        Send Invite!
       </button>
       or
       <a href="/invites">Cancel</a>

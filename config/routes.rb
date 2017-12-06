@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   # READ
   get "/invites", :controller => "invites", :action => "index"
   get "/invites/:id", :controller => "invites", :action => "show"
+  get "/invite_again/:id", :controller => "invites", :action => "invite_show"
 
   # UPDATE
   get "/invites/:id/edit", :controller => "invites", :action => "edit"
