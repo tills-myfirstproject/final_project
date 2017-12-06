@@ -27,6 +27,23 @@ class InvitesController < ApplicationController
 
     render("invites/new.html.erb")
   end
+  
+  def create_proposer
+    @invite = Invite.new
+    @activity = Activity.find(params[:activity_id])
+    
+    @invite.activity_id = params[:activity_id]
+    @invite.invitee_id = @activity.proposer_id
+    @invite.attend_status = "Going"
+    
+    save_status = @invite.save
+
+    if save_status == true
+      redirect_to("/activities/#{@activity.id}", :notice => "Activity created successfully.")
+    else
+      render("activities/new.html.erb")
+    end
+  end
 
   def create
     @invite = Invite.new

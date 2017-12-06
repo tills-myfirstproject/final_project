@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   # CREATE
   get "/invites/new/:activity_id", :controller => "invites", :action => "new"
   post "/create_invite", :controller => "invites", :action => "create"
+  get "/create_proposer_invite/:activity_id", :controller => "invites", :action => "create_proposer"
 
   # READ
   get "/invites", :controller => "invites", :action => "index"

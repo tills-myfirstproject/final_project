@@ -37,7 +37,7 @@ class ActivitiesController < ApplicationController
     save_status = @activity.save
 
     if save_status == true
-      redirect_to("/activities/#{@activity.id}", :notice => "Activity created successfully.")
+      redirect_to("/create_proposer_invite/#{@activity.id}")
     else
       render("activities/new.html.erb")
     end
