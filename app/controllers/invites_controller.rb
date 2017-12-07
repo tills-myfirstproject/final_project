@@ -2,6 +2,7 @@ class InvitesController < ApplicationController
   def index
     @invites = Invite.where(:invitee_id => current_user.id).all
     @new_invites = @invites.where(:attend_status => "No Response").all
+    @upcoming_invites = @invites.where.not(:attend_status => "No Response").all
     @activities = Activity.all
     @categories = Category.all
     
@@ -61,31 +62,40 @@ class InvitesController < ApplicationController
     if save_status == true
       redirect_to("/invite_again/#{@invite.activity_id}", :notice => "Invite created successfully.")
     else
-      redirect_to("/invites/new/#{@activity.id}", :alert => "Invite failed.")
+      redirect_to("/invites/new/#{@activity.id}", :alert => "Invite failed")
     end
   end
 
   def edit
     @invite = Invite.find(params[:id])
-
-    render("invites/edit.html.erb")
-  end
-
-  def update
-    @invite = Invite.find(params[:id])
-
-    @invite.activity_id = params[:activity_id]
-    @invite.invitee_id = params[:invitee_id]
+    
     @invite.attend_status = params[:attend_status]
-
+    
     save_status = @invite.save
-
+    
     if save_status == true
-      redirect_to("/invites/#{@invite.id}", :notice => "Invite updated successfully.")
+      redirect_to("/invites", :notice => "Response updated successfully.")
     else
-      render("invites/edit.html.erb")
+      redirect_to("/invites", :alert => "Nothing happened")
     end
+
   end
+
+  # def update
+  #   @invite = Invite.find(params[:id])
+
+  #   @invite.activity_id = params[:activity_id]
+  #   @invite.invitee_id = params[:invitee_id]
+  #   @invite.attend_status = params[:attend_status]
+
+  #   save_status = @invite.save
+
+  #   if save_status == true
+  #     redirect_to("/invites/#{@invite.id}", :notice => "Invite updated successfully.")
+  #   else
+  #     render("invites/edit.html.erb")
+  #   end
+  # end
 
   def destroy
     @invite = Invite.find(params[:id])

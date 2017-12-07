@@ -21,28 +21,55 @@
           <th>Date</th>
           <th>Meet time</th>
           <th>Cost level</th>
-          <th>Attend status</th>
+          <th>Update Attend status</th>
           <th>Actions</th>
         </tr>
   
         <% @new_invites.each do |invite| %>
-        <tr>
-          <td><img src="
-            <%= @categories.find(
-              id: @activities.find(
-                id: invite.activity_id
-                ).category_id
-              ).icon 
-            %>"
-          ></td>
-          <td><%= invite.invitee_id %></td>
-          <td><%= invite.attend_status %></td>
-          <td>
-            <a href="/invites/<%= invite.id %>" class="btn btn-primary">Show</a>
-            <a href="/invites/<%= invite.id %>/edit" class="btn btn-warning">Edit</a>
-            <a href="/delete_invite/<%= invite.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
-          </td>
-        </tr>
+          <tr>
+            <td>
+              <img src="<%= @categories.find_by(id: @activities.find_by(:id => invite.activity_id).category_id).icon %>" height="50">
+            </td>
+            <td>
+              <a href="/invites/<%= invite.id %>">
+                <%= @activities.find_by(:id => invite.activity_id).name %>
+              </a>
+            </td>
+            <td><%= @activities.find_by(:id => invite.activity_id).date %></td>
+            <td>
+              <%= 
+                @activities.find_by(:id => invite.activity_id).meet_time.strftime("%I") 
+              %>:<%=
+                @activities.find_by(:id => invite.activity_id).meet_time.strftime("%M")
+              %> <%=
+                @activities.find_by(:id => invite.activity_id).meet_time.strftime("%p")
+              %>
+            </td>
+            <td>
+              <% if  @activities.find_by(:id => invite.activity_id).cost_level == "low" %>
+                <img src="/Dollar signs for tilley-01.jpg" height="20">
+              <% elsif  @activities.find_by(:id => invite.activity_id).cost_level == "medium" %>
+                <img src="/Dollar signs for tilley-02.jpg" height="20">
+              <% elsif  @activities.find_by(:id => invite.activity_id).cost_level == "high" %>
+                <img src="/Dollar signs for tilley-03.jpg" height="20">
+              <% end %>
+            </td>
+            <td>
+              <form action="/invites/<%= invite.id %>/edit" method="post">
+                <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+                <select type="list" name="attend_status" onchange="this.form.submit()" value="<%= invite.attend_status %>">
+                  <option value="No Response">No Response</option>
+                  <option value="Going">Going</option>
+                  <option value="Can't go">Can't go</option>
+                  <option value="Might make it">Might make it</option>
+                </select>
+              </form>
+            </td>
+            <td>
+              <a href="/invites/<%= invite.id %>" class="btn btn-primary">Event Details</a>
+              <a href="/delete_invite/<%= invite.id %>" class="btn btn-danger" rel="nofollow">Delete Invite</a>
+            </td>
+          </tr>
         <% end %>
       </table>
     </div>
