@@ -1,6 +1,6 @@
 <div class="page-header">
   <h1>
-    Your Activity Invites
+    Your Invites
   </h1>
 </div>
 
@@ -21,7 +21,7 @@
           <th>Date</th>
           <th>Meet time</th>
           <th>Cost level</th>
-          <th>Update Attend status</th>
+          <th>Update attend status</th>
           <th>Actions</th>
         </tr>
   
@@ -58,6 +58,7 @@
               <form action="/invites/<%= invite.id %>/edit" method="post">
                 <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
                 <select type="list" name="attend_status" onchange="this.form.submit()" value="<%= invite.attend_status %>">
+                  <option value="" selected disabled hidden><%= invite.attend_status %></option>
                   <option value="No Response">No Response</option>
                   <option value="Going">Going</option>
                   <option value="Can't go">Can't go</option>
