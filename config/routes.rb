@@ -46,7 +46,7 @@ Rails.application.routes.draw do
   get "/invite_again/:id", :controller => "invites", :action => "invite_show"
 
   # UPDATE
-  get "/invites/:id/edit", :controller => "invites", :action => "edit"
+  post "/invites/:id/edit", :controller => "invites", :action => "edit"
   post "/update_invite/:id", :controller => "invites", :action => "update"
 
   # DELETE
