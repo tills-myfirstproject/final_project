@@ -1,30 +1,72 @@
 <div class="page-header">
-  <h3>Invite #<%= @invite.id %></h3>
+  <h3>
+    <img src="<%= Category.find_by(id: Activity.find_by(:id => @invite.activity_id).category_id).icon %>" height="50"> <%= Activity.find_by(id: @invite.activity_id).name %>
+  </h3>
 </div>
 
 <div class="row">
-  <div class="col-md-12 mb-2">
+  <div class="col-md-3 mb-2">
+    <img src="<%= Activity.find_by(id: @invite.activity_id).visual %>" >
+  </div>
+  
+  <div class="col-md-9 mb-2">
     <dl class="dl-horizontal">
-      <dt>Activity</dt>
-      <dd><%= @invite.activity_id %></dd>
+      <dt>Event proposer</dt>
+      <dd><%= User.find_by(id: Activity.find_by(id: @invite.activity_id).proposer_id).email %></dd>
 
-      <dt>Invitee</dt>
-      <dd><%= @invite.invitee_id %></dd>
+      <dt>Date</dt>
+      <dd><%= Activity.find_by(id: @invite.activity_id).date %></dd>
+      
+      <dt>Meet time</dt>
+      <dd>
+        <%= 
+          Activity.find_by(:id => @invite.activity_id).meet_time.strftime("%I") 
+        %>:<%=
+          Activity.find_by(:id => @invite.activity_id).meet_time.strftime("%M")
+        %> <%=
+          Activity.find_by(:id => @invite.activity_id).meet_time.strftime("%p")
+        %>
+      </dd>
 
-      <dt>Attend status</dt>
-      <dd><%= @invite.attend_status %></dd>
+      <dt>Cost level</dt>
+      <dd>
+        <% if  Activity.find_by(:id => @invite.activity_id).cost_level == "low" %>
+          <img src="/Dollar signs for tilley-01.jpg" height="20">
+        <% elsif  Activity.find_by(:id => @invite.activity_id).cost_level == "medium" %>
+          <img src="/Dollar signs for tilley-02.jpg" height="20">
+        <% elsif  Activity.find_by(:id => @invite.activity_id).cost_level == "high" %>
+          <img src="/Dollar signs for tilley-03.jpg" height="20">
+        <% end %>
+      </dd>
+
+      <dt>Update attend status</dt>
+      <dd>              
+        <form action="/invites/<%= @invite.id %>/edit" method="post">
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+          <select type="list" name="attend_status" onchange="this.form.submit()" value="<%= @invite.attend_status %>">
+            <option value="" selected disabled hidden><%= @invite.attend_status %></option>
+            <option value="No Response">No Response</option>
+            <option value="Going">Going</option>
+            <option value="Can't go">Can't go</option>
+            <option value="Might make it">Might make it</option>
+          </select>
+        </form>
+      </dd>
 
     </dl>
+  </div>
+</div>
 
+<hr>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
     <div class="btn-group btn-group-justified">
       <a href="/invites" class="btn btn-primary">
-        Back
-      </a>
-      <a href="/invites/<%= @invite.id %>/edit" class="btn btn-warning">
-        Edit
+        Back to all invites
       </a>
       <a href="/delete_invite/<%= @invite.id %>" class="btn btn-danger" rel="nofollow">
-        Delete
+        Delete this invite
       </a>
     </div>
   </div>
