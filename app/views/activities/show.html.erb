@@ -5,43 +5,88 @@
 </div>
 
 <div class="row">
-  <div class="col-md-12 mb-2">
+  <div class="col-md-4 mb-2">
+    <img src="<%= @activity.visual %>" >
+  </div>
+  
+  <div class="col-md-4 mb-2">
+    <h3>
+      Event details
+    </h3>
+    
     <dl class="dl-horizontal">
       <dt>Event proposer</dt>
       <dd><%= User.find_by(id: @activity.proposer_id).email %></dd>
 
-      <dt>Address</dt>
-      <dd><%= @activity.address %></dd>
-
-      <dt>Category</dt>
-      <dd><%= @activity.category_id %></dd>
-
+      <dt>Date</dt>
+      <dd><%= @activity.date %></dd>
+      
       <dt>Meet time</dt>
-      <dd><%= @activity.meet_time %></dd>
-
-      <dt>Proposer</dt>
-      <dd><%= @activity.proposer_id %></dd>
-
-      <dt>Visual</dt>
-      <dd><%= @activity.visual %></dd>
-
-      <dt>Duration</dt>
-      <dd><%= @activity.duration %></dd>
+      <dd>
+        <%= 
+          @activity.meet_time.strftime("%I") 
+        %>:<%=
+          @activity.meet_time.strftime("%M")
+        %> <%=
+          @activity.meet_time.strftime("%p")
+        %>
+      </dd>
 
       <dt>Cost level</dt>
-      <dd><%= @activity.cost_level %></dd>
+      <dd>
+        <% if  @activity.cost_level == "low" %>
+          <img src="/Dollar signs for tilley-01.jpg" height="20">
+        <% elsif  @activity.cost_level == "medium" %>
+          <img src="/Dollar signs for tilley-02.jpg" height="20">
+        <% elsif  @activity.cost_level == "high" %>
+          <img src="/Dollar signs for tilley-03.jpg" height="20">
+        <% end %>
+      </dd>
 
     </dl>
+  </div>
+  
+  <div class="col-md-4 mb-2">
+    <h3>
+      Invite list
+      <a href="invites/new/<%= @activity.id %>" class="btn btn-lrg btn-success">Invite more people</a>
+    </h3>
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>
+          Invite list
+        </th>
+        <th>
+          Attend status
+        </th>
+      </tr>
+      
+      <% @invites.each do |invite| %>
+      <tr>
+        <td><%= User.find_by(id: invite.invitee_id).email %></td>
+        <td><%= invite.attend_status %></td>
+      </tr>
+      
+      <% end %>
+      </table>
+    
+  </div>
+  
+</div>
 
+<hr>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
     <div class="btn-group btn-group-justified">
       <a href="/activities" class="btn btn-primary">
-        Back
+        Back to all activities
       </a>
       <a href="/activities/<%= @activity.id %>/edit" class="btn btn-warning">
-        Edit
+        Edit this activity
       </a>
       <a href="/delete_activity/<%= @activity.id %>" class="btn btn-danger" rel="nofollow">
-        Delete
+        Delete this activity
       </a>
     </div>
   </div>

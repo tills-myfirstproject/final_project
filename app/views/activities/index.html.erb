@@ -15,9 +15,8 @@
         <th>Date</th>
         <th>Meet time</th>
         <th>Duration (hours)</th>
-        <th>Visual</th>
         <th>Cost level</th>
-        <th>Invite Friends!</th>
+        <th>Visual</th>
         <th>Actions</th>
       </tr>
 
@@ -29,7 +28,6 @@
         <td><%= activity.date %></td>
         <td><%= activity.meet_time.strftime("%I") %>:<%= activity.meet_time.strftime("%M") %> <%= activity.meet_time.strftime("%p") %></td>
         <td><%= activity.duration %></td>
-        <td><img src="<%= activity.visual %>" height=""></td>
         <td>
           <% if activity.cost_level == "low" %>
               <img src="/Dollar signs for tilley-01.jpg" height="20">
@@ -40,11 +38,10 @@
           <% end %>
           
         </td>
+        <td><img src="<%= activity.visual %>" height=""></td>
         <td>
-          <a href="invites/new/<%= activity.id %>" class="btn btn-primary">Send Invites!</a>
-        </td>
-        <td>
-          <a href="/activities/<%= activity.id %>" class="btn btn-primary">Show</a>
+          <a href="/activities/<%= activity.id %>" class="btn btn-primary">Activity detail</a>
+          <a href="/invites/new/<%= activity.id %>" class="btn btn-success">Invite friends</a>
           <a href="/activities/<%= activity.id %>/edit" class="btn btn-warning">Edit</a>
           <a href="/delete_activity/<%= activity.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
         </td>

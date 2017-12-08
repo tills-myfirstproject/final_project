@@ -1,11 +1,11 @@
 <div class="page-header">
-  <h3>Invite more people to <%= @activity.name %>?</h3>
+  <h3>Invite more people to <%= @activity.name %> <img src="<%= Category.find_by(:id => @activity.category_id).icon %>" height="50"></h3>
 </div>
 
 <div class="row">
-  <div class="col-md-12 mb-2">
+  <div class="col-md-6 mb-2">
     <dl class="dl-horizontal">
-      <div class="col-md-12">
+      <div class="col-md-6">
         <form action="/create_invite" method="post">
           <!-- Hidden input for authenticity token to protect from forgery -->
           <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
@@ -15,9 +15,9 @@
     
           <!-- Label and input for invitee_id -->
           <div class="form-group">
-            <label for="invitee_id" class="control-label">
-              Who else would you like to invite?
-            </label>
+            <h3 for="invitee_id" class="control-label">
+              New invites
+            </h3>
     
             <select type="list" id="invitee_id" name="invitee_id" placeholder="Invitee" class="form-control">
                 <% @users.each do |users| %>
@@ -34,20 +34,20 @@
             Send Invite!
           </button>
           or
-          <a href="/invites">Cancel</a>
+          <a href="/activities/<%= @activity.id %>">Cancel</a>
         </form>
       </div>
 
     </dl>
   </div>
   
-  <div class="col-md-12 mb-2">
+  <div class="col-md-6 mb-2">
     <div>
-      <h3>Current Invite List</h3>
+      <h3>Current invite list</h3>
     </div>
     
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-6">
         <table class="table table-striped table-hover">
           <tr>
             <th>Invite Email</th>
@@ -64,18 +64,6 @@
           <% end %>
         </table>
       </div>
-    </div>
-
-    <div class="btn-group btn-group-justified">
-      <a href="/" class="btn btn-primary">
-        Back
-      </a>
-      <a href="/" class="btn btn-warning">
-        Edit
-      </a>
-      <a href="/" class="btn btn-danger" rel="nofollow">
-        Delete
-      </a>
     </div>
   </div>
 </div>

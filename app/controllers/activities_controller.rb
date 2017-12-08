@@ -9,6 +9,7 @@ class ActivitiesController < ApplicationController
 
   def show
     @activity = Activity.find(params[:id])
+    @invites = Invite.where(activity_id: params[:id]).all
 
     render("activities/show.html.erb")
   end
