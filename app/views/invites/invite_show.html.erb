@@ -1,3 +1,13 @@
+<!-- Validation failure messages -->
+<% if @invite.errors.any? %>
+  <% @invite.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
 <div class="page-header">
   <h3>Invite more people to <%= @activity.name %> <img src="<%= Category.find_by(:id => @activity.category_id).icon %>" height="50"></h3>
 </div>

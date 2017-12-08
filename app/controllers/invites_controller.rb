@@ -17,6 +17,7 @@ class InvitesController < ApplicationController
   
   def invite_show
     @activity = Activity.find(params[:id])
+    @invite = Invite.new
     @invites = Invite.where(:activity_id => @activity.id).all
     #@non_current_user = User.where.not(id: current_user.id).all
     @users = User.where.not(id: Invite.where(:activity_id => @activity.id).pluck(:invitee_id)).all
