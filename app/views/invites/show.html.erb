@@ -5,11 +5,14 @@
 </div>
 
 <div class="row">
-  <div class="col-md-3 mb-2">
-    <img src="<%= Activity.find_by(id: @invite.activity_id).visual %>" >
+  <div class="col-md-4 mb-2">
+    <img src="<%= Activity.find_by(id: @invite.activity_id).visual %>" height="200">
   </div>
   
-  <div class="col-md-9 mb-2">
+  <div class="col-md-4 mb-2">
+    <h3>
+      Event details
+    </h3>
     <dl class="dl-horizontal">
       <dt>Event proposer</dt>
       <dd><%= User.find_by(id: Activity.find_by(id: @invite.activity_id).proposer_id).email %></dd>
@@ -54,6 +57,32 @@
       </dd>
 
     </dl>
+  </div>
+  
+  <div class="col-md-4 mb-2">
+    <h3>
+      Invite list
+    </h3>
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>
+          Invite list
+        </th>
+        <th>
+          Attend status
+        </th>
+      </tr>
+      
+      <% @invites.each do |invite| %>
+      <tr>
+        <td><%= User.find_by(id: invite.invitee_id).email %></td>
+        <td><%= invite.attend_status %></td>
+      </tr>
+      
+      <% end %>
+      </table>
+
+    
   </div>
 </div>
 

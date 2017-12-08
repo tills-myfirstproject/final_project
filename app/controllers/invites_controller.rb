@@ -11,6 +11,7 @@ class InvitesController < ApplicationController
 
   def show
     @invite = Invite.find(params[:id])
+    @invites = Invite.where(activity_id: Activity.find_by(id: @invite.activity_id).id).all
 
     render("invites/show.html.erb")
   end
@@ -26,9 +27,12 @@ class InvitesController < ApplicationController
   end
 
   def new
-    @invite = Invite.new
     @activity = Activity.find(params[:activity_id])
-    @users = User.where.not(id: current_user.id).all
+    @invite = Invite.new
+    @invites = Invite.where(:activity_id => @activity.id).all
+    #@non_current_user = User.where.not(id: current_user.id).all
+    @users = User.where.not(id: Invite.where(:activity_id => @activity.id).pluck(:invitee_id)).all
+
 
     render("invites/new.html.erb")
   end

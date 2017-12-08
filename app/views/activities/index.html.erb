@@ -16,6 +16,10 @@
         <th>Meet time</th>
         <th>Duration (hours)</th>
         <th>Cost level</th>
+        <th>Invites sent</th>
+        <th>Attending</th>
+        <th>Declined</th>
+        <th>Maybes</th>
         <th>Visual</th>
         <th>Actions</th>
       </tr>
@@ -38,7 +42,11 @@
           <% end %>
           
         </td>
-        <td><img src="<%= activity.visual %>" height=""></td>
+        <td><%= Invite.where(activity_id: activity.id).count %></td>
+        <td><%= Invite.where(activity_id: activity.id).where(attend_status: "Going").count %></td>
+        <td><%= Invite.where(activity_id: activity.id).where(attend_status: "Can't go").count %></td>
+        <td><%= Invite.where(activity_id: activity.id).where(attend_status: "Might make it").count %></td>
+        <td><img src="<%= activity.visual %>" height="200"></td>
         <td>
           <a href="/activities/<%= activity.id %>" class="btn btn-primary">Activity detail</a>
           <a href="/invites/new/<%= activity.id %>" class="btn btn-success">Invite friends</a>

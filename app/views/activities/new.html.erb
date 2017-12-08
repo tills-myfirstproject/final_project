@@ -81,7 +81,8 @@
         <label for="duration" class="control-label">
           How many hours do you expect your event to be?
         </label>
-            <select type="list" id="duration" name="duration" value="<%= @activity.duration %>" width="50">
+        
+        <select type="list" id="duration" name="duration" value="<%= @activity.duration %>" width="50">
             <% (1..6).each do |i| %>
               <option value="<%= i %>"><%= i %></option>  
             <% end %>

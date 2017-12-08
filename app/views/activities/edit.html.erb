@@ -69,7 +69,12 @@
           Duration (hours)
         </label>
 
-        <input type="text" id="duration" name="duration" placeholder="Duration" class="form-control" value="<%= @activity.duration %>">
+        <select type="list" id="duration" name="duration" value="<%= @activity.duration %>" width="50">
+            <option value="" selected disabled hidden><%= @activity.duration %></option>
+            <% (1..6).each do |i| %>
+              <option value="<%= i %>"><%= i %></option>  
+            <% end %>
+        </select>
       </div>
 
       <!-- Label and input for visual -->

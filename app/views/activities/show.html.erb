@@ -6,7 +6,7 @@
 
 <div class="row">
   <div class="col-md-4 mb-2">
-    <img src="<%= @activity.visual %>" >
+    <img src="<%= @activity.visual %>" height="200">
   </div>
   
   <div class="col-md-4 mb-2">
@@ -49,7 +49,7 @@
   <div class="col-md-4 mb-2">
     <h3>
       Invite list
-      <a href="invites/new/<%= @activity.id %>" class="btn btn-lrg btn-success">Invite more people</a>
+      <a href="/invites/new/<%= @activity.id %>" class="btn btn-lrg btn-success">Invite more people</a>
     </h3>
     <table class="table table-striped table-hover">
       <tr>
